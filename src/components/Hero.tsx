@@ -83,7 +83,7 @@ export default function Hero() {
         className="absolute inset-0 -top-[8%] h-[116%] w-full"
       >
         <Image
-          src="/images/Elysian_highres_3060x4080.png"
+          src="/images/Sallon1.png"
           alt="Ο χώρος υποδοχής του Elysian Hair Studio"
           fill
           priority
@@ -130,12 +130,13 @@ export default function Hero() {
           animate="visible"
           custom={0}
           variants={fadeUp}
-          className="mb-8 flex items-center gap-4"
+          className="mb-8 flex items-center justify-center gap-4"
         >
           <span className="h-px w-10 bg-champagne/70" />
           <span className="text-[11px] uppercase tracking-[0.35em] text-alabaster/70">
             Αναδεικνύουμε την καλύτερη, πιο κομψή εκδοχή σας
           </span>
+          <span className="h-px w-10 bg-champagne/70" />
         </motion.div>
 
         <h1 className="font-serif text-[13vw] font-medium leading-[0.98] tracking-tight text-alabaster sm:text-[8.5vw] lg:text-[6.4vw]">
