@@ -7,14 +7,6 @@ import { ArrowRight, ArrowDown } from "lucide-react";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
-const lineVariants: Variants = {
-  hidden: { y: "110%" },
-  visible: (i: number) => ({
-    y: "0%",
-    transition: { duration: 1.1, delay: 0.5 + i * 0.12, ease: EASE },
-  }),
-};
-
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 24 },
   visible: (delay: number = 0) => ({
@@ -23,6 +15,50 @@ const fadeUp: Variants = {
     transition: { duration: 0.9, delay, ease: EASE },
   }),
 };
+
+// Editorial letter-by-letter reveal: no cursor, just a soft fade + gentle rise per character.
+const letterGroupVariants: Variants = {
+  hidden: {},
+  visible: (delay: number = 0) => ({
+    transition: { delayChildren: delay, staggerChildren: 0.026 },
+  }),
+};
+
+const letterVariants: Variants = {
+  hidden: { opacity: 0, y: 10 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, ease: EASE },
+  },
+};
+
+function TypewriterLine({
+  text,
+  delay = 0,
+  className,
+}: {
+  text: string;
+  delay?: number;
+  className?: string;
+}) {
+  return (
+    <motion.span
+      aria-hidden="true"
+      className={className}
+      custom={delay}
+      variants={letterGroupVariants}
+      initial="hidden"
+      animate="visible"
+    >
+      {text.split("").map((char, index) => (
+        <motion.span key={index} variants={letterVariants} className="inline-block">
+          {char === " " ? " " : char}
+        </motion.span>
+      ))}
+    </motion.span>
+  );
+}
 
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -98,50 +134,27 @@ export default function Hero() {
         >
           <span className="h-px w-10 bg-champagne/70" />
           <span className="text-[11px] uppercase tracking-[0.35em] text-alabaster/70">
-            Πολυτελής Κομμωτική Τέχνη
+            Αναδεικνύουμε την καλύτερη, πιο κομψή εκδοχή σας
           </span>
         </motion.div>
 
         <h1 className="font-serif text-[13vw] font-medium leading-[0.98] tracking-tight text-alabaster sm:text-[8.5vw] lg:text-[6.4vw]">
-          <span className="block overflow-hidden">
-            <motion.span
-              className="block"
-              custom={0}
-              variants={lineVariants}
-              initial="hidden"
-              animate="visible"
-            >
-              Η κόμμωση
-            </motion.span>
+          <span className="sr-only">
+            Η κόμμωση ως προσωπική αισθητική δήλωση
           </span>
-          <span className="block overflow-hidden">
-            <motion.span
-              className="block"
-              custom={1}
-              variants={lineVariants}
-              initial="hidden"
-              animate="visible"
-            >
-              ως προσωπική
-            </motion.span>
-          </span>
-          <span className="block overflow-hidden">
-            <motion.span
-              className="block italic text-champagne"
-              custom={2}
-              variants={lineVariants}
-              initial="hidden"
-              animate="visible"
-            >
-              αισθητική δήλωση
-            </motion.span>
-          </span>
+          <TypewriterLine text="Η κόμμωση" delay={0.5} className="block" />
+          <TypewriterLine text="ως προσωπική" delay={0.86} className="block" />
+          <TypewriterLine
+            text="αισθητική δήλωση"
+            delay={1.22}
+            className="block italic text-champagne"
+          />
         </h1>
 
         <motion.p
           initial="hidden"
           animate="visible"
-          custom={1.15}
+          custom={2.05}
           variants={fadeUp}
           className="mt-8 max-w-md text-sm leading-relaxed tracking-wide text-alabaster/80 sm:text-base"
         >
@@ -153,7 +166,7 @@ export default function Hero() {
         <motion.div
           initial="hidden"
           animate="visible"
-          custom={1.3}
+          custom={2.25}
           variants={fadeUp}
           className="mt-12 flex items-center gap-8"
         >
@@ -173,7 +186,7 @@ export default function Hero() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 1.6 }}
+        transition={{ duration: 1, delay: 2.5 }}
         className="absolute bottom-10 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-3"
       >
         <span className="text-[10px] uppercase tracking-[0.3em] text-alabaster/70">
