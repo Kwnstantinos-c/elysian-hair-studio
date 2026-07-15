@@ -47,7 +47,7 @@ export default function Hero() {
         className="absolute inset-0 -top-[8%] h-[116%] w-full"
       >
         <Image
-          src="/images/hero-interior.png"
+          src="/images/Elysian_highres_3060x4080.png"
           alt="Ο χώρος υποδοχής του Elysian Hair Studio"
           fill
           priority
@@ -72,7 +72,7 @@ export default function Hero() {
         transition={{ duration: 0.9, ease: EASE }}
         className="relative z-10 flex items-center justify-between px-6 pt-8 sm:px-10 lg:px-16"
       >
-        <span className="font-serif text-xl italic tracking-wide text-alabaster">
+        <span className="font-serif text-5xl italic leading-none tracking-wider text-alabaster">
           Elysian
         </span>
         <nav className="hidden items-center gap-10 text-[11px] uppercase tracking-[0.25em] text-alabaster/70 sm:flex">
