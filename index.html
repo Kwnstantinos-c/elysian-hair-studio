@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elysian Hair Salon</title>
+    <style>
+        /* Βασικές ρυθμίσεις για όλη τη σελίδα */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fdfbfb;
+            color: #333;
+        }
+
+        /* Το πάνω μέρος (Header) με το όνομα του κομμωτηρίου */
+        header {
+            background-color: #2c2c2c;
+            color: #d4af37; /* Ένα κομψό χρυσό/μπρονζέ χρώμα */
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
+        /* Το μενού πλοήγησης */
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            background-color: #1a1a1a;
+            padding: 15px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #d4af37;
+        }
+
+        /* Το κεντρικό "Hero" section (πρώτη εντύπωση) */
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+            background-color: #eaddd7;
+        }
+
+        /* Οι υπηρεσίες (Grid ή λίστα) */
+        .services {
+            padding: 50px 20px;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .service-item {
+            background: white;
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 5px solid #d4af37;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        /* Το κάτω μέρος της σελίδας (Footer) */
+        footer {
+            background-color: #2c2c2c;
+            color: #cccccc;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <h1>Elysian Hair Salon</h1>
+        <p>Η απόλυτη εμπειρία περιποίησης & ομορφιάς</p>
+    </header>
+
+    <!-- Navigation Menu -->
+    <nav>
+        <a href="#home">Αρχική</a>
+        <a href="#services">Υπηρεσίες</a>
+        <a href="#contact">Επικοινωνία</a>
+    </nav>
+
+    <main>
+        <!-- Welcome Section -->
+        <section id="home" class="hero">
+            <h2>Καλώς ήρθατε στο Elysian</h2>
+            <p>Ανανεώστε το στυλ σας και αναδείξτε τον καλύτερο εαυτό σας με την ομάδα των ειδικών μας. <br>Χρησιμοποιούμε κορυφαία προϊόντα και τις πιο σύγχρονες τεχνικές.</p>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="services">
+            <h2 style="text-align: center; margin-bottom: 30px;">Οι Υπηρεσίες μας</h2>
+            
+            <div class="service-item">
+                <h3>Γυναικείο Κούρεμα & Styling</h3>
+                <p>Σύγχρονες γραμμές για κάθε τύπο μαλλιών. Περιλαμβάνει λούσιμο με εξειδικευμένα προϊόντα, θεραπεία και επαγγελματικό styling.</p>
+            </div>
+            
+            <div class="service-item">
+                <h3>Βαφή & Ανταύγειες (Balayage)</h3>
+                <p>Εξατομικευμένα χρώματα, τεχνικές balayage και baby lights που ταιριάζουν στην επιδερμίδα και αναδεικνύουν τα χαρακτηριστικά σας.</p>
+            </div>
+            
+            <div class="service-item">
+                <h3>Ανδρικό Κούρεμα & Barbering</h3>
+                <p>Κλασικά και μοντέρνα Fade κουρέματα, καθώς και ολοκληρωμένη περιποίηση γενειάδας με ζεστές πετσέτες.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer / Contact Section -->
+    <footer id="contact">
+        <h3>Επικοινωνία & Ωράριο</h3>
+        <p>📞 Τηλέφωνο: 210 1234567 | 📍 Διεύθυνση: Οδός Ομορφιάς 12, Αθήνα</p>
+        <p>🕒 Δευτέρα - Σάββατο: 09:00 - 20:00 (Κυριακή κλειστά)</p>
+        <p>&copy; 2026 Elysian Hair Salon. Demo Project.</p>
+    </footer>
+
+</body>
+</html>
