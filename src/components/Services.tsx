@@ -1,13 +1,30 @@
 "use client";
 
+import Image, { type StaticImageData } from "next/image";
 import { motion, type Variants } from "framer-motion";
-import { Scissors, Palette, Sparkles, Gem, ArrowUpRight, type LucideIcon } from "lucide-react";
+import {
+  Scissors,
+  Palette,
+  Sparkles,
+  Gem,
+  Wind,
+  Flame,
+  ArrowUpRight,
+  type LucideIcon,
+} from "lucide-react";
+import stylingImage from "@/images/styling.png";
+import weddingImage from "@/images/wedding.png";
+import colorImage from "@/images/color.png";
+import eventImage from "@/images/event.png";
+import straitHairImage from "@/images/straitHair.png";
+import TreatmentImage from "@/images/treatment.png";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
 type Service = {
   number: string;
   icon: LucideIcon;
+  image?: StaticImageData;
   title: string;
   description: string;
   span: string;
@@ -19,42 +36,68 @@ const SERVICES: Service[] = [
   {
     number: "01",
     icon: Scissors,
+    image: stylingImage,
     title: "Κούρεμα & Styling",
     description:
       "Ακριβείς γραμμές και φόρμες, σχεδιασμένες γύρω από τα χαρακτηριστικά και τη στάση ζωής σας.",
-    span: "lg:col-span-7",
+    span: "lg:col-span-4",
     offset: "",
     tone: "from-champagne/30 via-alabaster-dim to-alabaster-dim",
   },
   {
     number: "02",
     icon: Palette,
+    image: colorImage,
     title: "Χρώμα & Απόχρωση",
     description:
       "Τεχνικές βαφής και ανταύγειας υψηλής ακριβείας, για ένα αποτέλεσμα βαθιάς φυσικότητας.",
-    span: "lg:col-span-5",
-    offset: "lg:mt-28",
+    span: "lg:col-span-4",
+    offset: "lg:mt-6",
     tone: "from-bronze/25 via-alabaster-dim to-alabaster-dim",
   },
   {
     number: "03",
     icon: Sparkles,
+    image: TreatmentImage,
     title: "Θεραπείες Περιποίησης",
     description:
       "Εξειδικευμένες θεραπείες αποκατάστασης που αναδεικνύουν την υγεία και τη λάμψη της τρίχας.",
-    span: "lg:col-span-5",
-    offset: "lg:mt-12",
+    span: "lg:col-span-4",
+    offset: "lg:mt-14",
     tone: "from-charcoal/10 via-alabaster-dim to-alabaster-dim",
   },
   {
     number: "04",
     icon: Gem,
+    image: weddingImage,
     title: "Νυφική Κόμμωση",
     description:
       "Κομψές, διαχρονικές δημιουργίες για τη πιο σημαντική μέρα της ζωής σας.",
-    span: "lg:col-span-7",
-    offset: "lg:-mt-16",
+    span: "lg:col-span-4",
+    offset: "lg:-mt-10",
     tone: "from-champagne/20 via-alabaster-dim to-alabaster-dim",
+  },
+  {
+    number: "05",
+    icon: Wind,
+    image: eventImage,
+    title: "Χτενίσματα & Εκδηλώσεις",
+    description:
+      "Φυσικά κυματιστά ή λεία χτενίσματα, χτισμένα να αντέχουν όλη τη βραδιά.",
+    span: "lg:col-span-4",
+    offset: "lg:mt-2",
+    tone: "from-bronze/20 via-alabaster-dim to-alabaster-dim",
+  },
+  {
+    number: "06",
+    icon: Flame,
+    image: straitHairImage,
+    title: "Θεραπεία Ισιώματος",
+    description:
+      "Κερατίνη και θεραπείες λείανσης που εξημερώνουν τον όγκο χωρίς να βαραίνουν την τρίχα.",
+    span: "lg:col-span-4",
+    offset: "lg:mt-20",
+    tone: "from-charcoal/15 via-alabaster-dim to-alabaster-dim",
   },
 ];
 
@@ -101,7 +144,7 @@ export default function Services() {
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 gap-x-8 gap-y-16 lg:grid-cols-12">
+        <div className="grid grid-cols-1 gap-x-8 gap-y-14 lg:grid-cols-12">
           {SERVICES.map((service, i) => (
             <ServiceCard key={service.number} service={service} index={i} />
           ))}
@@ -123,32 +166,46 @@ function ServiceCard({ service, index }: { service: Service; index: number }) {
       transition={{ delay: index * 0.05 }}
       className={`group ${service.span} ${service.offset}`}
     >
-      <div
-        className={`relative aspect-[5/4] overflow-hidden rounded-[2px] bg-gradient-to-br ${service.tone}`}
-      >
-        <div className="absolute inset-0 flex items-center justify-center transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-110">
-          <Icon
-            strokeWidth={0.85}
-            className="h-24 w-24 text-charcoal/70 sm:h-32 sm:w-32"
+      {service.image ? (
+        <div className="relative overflow-hidden rounded-[2px]">
+          <Image
+            src={service.image}
+            alt={service.title}
+            sizes="(min-width: 1024px) 40vw, 100vw"
+            className="h-auto w-full transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-110"
           />
+          <span className="absolute left-4 top-4 font-serif text-sm italic text-alabaster/90 drop-shadow-sm">
+            {service.number}
+          </span>
         </div>
-        <span className="absolute left-6 top-6 font-serif text-sm italic text-charcoal/50">
-          {service.number}
-        </span>
-      </div>
+      ) : (
+        <div
+          className={`relative aspect-[4/3] overflow-hidden rounded-[2px] bg-gradient-to-br ${service.tone}`}
+        >
+          <div className="absolute inset-0 flex items-center justify-center transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-110">
+            <Icon
+              strokeWidth={0.85}
+              className="h-16 w-16 text-charcoal/70 sm:h-20 sm:w-20"
+            />
+          </div>
+          <span className="absolute left-4 top-4 font-serif text-sm italic text-charcoal/50">
+            {service.number}
+          </span>
+        </div>
+      )}
 
-      <div className="mt-6 flex items-start justify-between gap-6">
+      <div className="mt-4 flex items-start justify-between gap-4">
         <div>
-          <h3 className="font-serif text-2xl tracking-tight sm:text-3xl">
+          <h3 className="font-serif text-xl tracking-tight sm:text-2xl">
             {service.title}
           </h3>
-          <p className="mt-3 max-w-sm text-sm leading-relaxed text-charcoal-soft">
+          <p className="mt-2 text-sm leading-relaxed text-charcoal-soft">
             {service.description}
           </p>
         </div>
         <ArrowUpRight
           strokeWidth={1.25}
-          className="mt-2 h-5 w-5 shrink-0 text-bronze transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1 group-hover:-translate-y-1"
+          className="mt-1.5 h-5 w-5 shrink-0 text-bronze transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1 group-hover:-translate-y-1"
         />
       </div>
     </motion.article>
