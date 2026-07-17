@@ -16,7 +16,6 @@ const fadeUp: Variants = {
   }),
 };
 
-// Editorial letter-by-letter reveal: no cursor, just a soft fade + gentle rise per character.
 const letterGroupVariants: Variants = {
   hidden: {},
   visible: (delay: number = 0) => ({

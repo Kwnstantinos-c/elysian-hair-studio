@@ -50,9 +50,9 @@ export default function Footer() {
               Τοποθεσία
             </p>
             <p className="leading-relaxed text-alabaster/80">
-              Οδός Σκουφά 12
+              Οδός Σμύρνης 6
               <br />
-              Κολωνάκι, Αθήνα 106 73
+              Δράμα 661 00
             </p>
           </div>
           <div>
@@ -60,42 +60,50 @@ export default function Footer() {
               Επικοινωνία
             </p>
             <p className="leading-relaxed text-alabaster/80">
-              +30 210 123 4567
+              +30 2521 039452
               <br />
               hello@elysianhair.gr
             </p>
           </div>
-          <div>
-            <p className="mb-4 text-[11px] uppercase tracking-[0.3em] text-alabaster/40">
-              Ωράριο
-            </p>
-            <p className="leading-relaxed text-alabaster/80">
-              Τρίτη – Σάββατο
-              <br />
-              10:00 – 20:00
-            </p>
-          </div>
+         <div>
+  <p className="mb-4 text-[11px] uppercase tracking-[0.3em] text-alabaster/40">
+    Ωράριο
+  </p>
+  <div className="space-y-2">
+    <p className="leading-relaxed text-alabaster/80">
+      Δευτέρα: Κλειστά
+    </p>
+    <p className="leading-relaxed text-alabaster/80">
+      Τρίτη: 9:00π.μ. - 6:00μ.μ
+    </p>
+    <p className="leading-relaxed text-alabaster/80">
+      Τετάρτη: 9:00π.μ. - 3:00μ.μ
+    </p>
+    <p className="leading-relaxed text-alabaster/80">
+      Πέμπτη: 11:00π.μ. - 8:00μ.μ
+    </p>
+    <p className="leading-relaxed text-alabaster/80">
+      Παρασκευή: 10:00π.μ. - 8:00μ.μ
+    </p>
+    <p className="leading-relaxed text-alabaster/80">
+      Σάββατο: 9:00π.μ. - 3:00μ.μ
+    </p>
+  </div>
+</div>
         </motion.div>
 
         <div className="flex flex-col items-center justify-between gap-6 pt-8 text-xs text-alabaster/40 sm:flex-row">
           <span>© 2026 Elysian Hair Studio. Με επιφύλαξη παντός δικαιώματος.</span>
           <div className="flex items-center gap-6 text-[11px] uppercase tracking-[0.2em]">
             <a
-              href="https://instagram.com"
+              href="https://www.instagram.com/elysian_hair_lounge/"
               target="_blank"
               rel="noopener noreferrer"
               className="transition-colors hover:text-champagne"
             >
               Instagram
             </a>
-            <a
-              href="https://facebook.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="transition-colors hover:text-champagne"
-            >
-              Facebook
-            </a>
+            
           </div>
         </div>
       </div>
