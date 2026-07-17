@@ -1,105 +1,19 @@
 "use client";
 
-import Image, { type StaticImageData } from "next/image";
+import Image from "next/image";
 import { motion, type Variants } from "framer-motion";
-import {
-  Scissors,
-  Palette,
-  Sparkles,
-  Gem,
-  Wind,
-  Flame,
-  ArrowUpRight,
-  type LucideIcon,
-} from "lucide-react";
-import stylingImage from "@/images/styling.png";
-import weddingImage from "@/images/wedding.png";
-import colorImage from "@/images/color.png";
-import eventImage from "@/images/event.png";
-import straitHairImage from "@/images/straitHair.png";
-import TreatmentImage from "@/images/treatment.png";
+import { ArrowRight } from "lucide-react";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
-type Service = {
-  number: string;
-  icon: LucideIcon;
-  image?: StaticImageData;
+export type Service = {
+  id: string;
   title: string;
   description: string;
-  span: string;
-  offset: string;
-  tone: string;
+  price: string;
+  image_url: string;
+  display_order: number;
 };
-
-const SERVICES: Service[] = [
-  {
-    number: "01",
-    icon: Scissors,
-    image: stylingImage,
-    title: "Κούρεμα & Styling",
-    description:
-      "Ακριβείς γραμμές και φόρμες, σχεδιασμένες γύρω από τα χαρακτηριστικά και τη στάση ζωής σας.",
-    span: "lg:col-span-4",
-    offset: "",
-    tone: "from-champagne/30 via-alabaster-dim to-alabaster-dim",
-  },
-  {
-    number: "02",
-    icon: Palette,
-    image: colorImage,
-    title: "Χρώμα & Απόχρωση",
-    description:
-      "Τεχνικές βαφής και ανταύγειας υψηλής ακριβείας, για ένα αποτέλεσμα βαθιάς φυσικότητας.",
-    span: "lg:col-span-4",
-    offset: "lg:mt-6",
-    tone: "from-bronze/25 via-alabaster-dim to-alabaster-dim",
-  },
-  {
-    number: "03",
-    icon: Sparkles,
-    image: TreatmentImage,
-    title: "Θεραπείες Περιποίησης",
-    description:
-      "Εξειδικευμένες θεραπείες αποκατάστασης που αναδεικνύουν την υγεία και τη λάμψη της τρίχας.",
-    span: "lg:col-span-4",
-    offset: "lg:mt-14",
-    tone: "from-charcoal/10 via-alabaster-dim to-alabaster-dim",
-  },
-  {
-    number: "04",
-    icon: Gem,
-    image: weddingImage,
-    title: "Νυφική Κόμμωση",
-    description:
-      "Κομψές, διαχρονικές δημιουργίες για τη πιο σημαντική μέρα της ζωής σας.",
-    span: "lg:col-span-4",
-    offset: "lg:-mt-10",
-    tone: "from-champagne/20 via-alabaster-dim to-alabaster-dim",
-  },
-  {
-    number: "05",
-    icon: Wind,
-    image: eventImage,
-    title: "Χτενίσματα & Εκδηλώσεις",
-    description:
-      "Φυσικά κυματιστά ή λεία χτενίσματα, χτισμένα να αντέχουν όλη τη βραδιά.",
-    span: "lg:col-span-4",
-    offset: "lg:mt-2",
-    tone: "from-bronze/20 via-alabaster-dim to-alabaster-dim",
-  },
-  {
-    number: "06",
-    icon: Flame,
-    image: straitHairImage,
-    title: "Θεραπεία Ισιώματος",
-    description:
-      "Κερατίνη και θεραπείες λείανσης που εξημερώνουν τον όγκο χωρίς να βαραίνουν την τρίχα.",
-    span: "lg:col-span-4",
-    offset: "lg:mt-20",
-    tone: "from-charcoal/15 via-alabaster-dim to-alabaster-dim",
-  },
-];
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 40 },
@@ -110,7 +24,11 @@ const fadeUp: Variants = {
   },
 };
 
-export default function Services() {
+type ServicesProps = {
+  services: Service[];
+};
+
+export default function Services({ services }: ServicesProps) {
   return (
     <section id="services" className="bg-alabaster px-6 py-28 sm:px-10 lg:px-16 lg:py-40">
       <div className="mx-auto max-w-6xl">
@@ -144,19 +62,23 @@ export default function Services() {
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 gap-x-8 gap-y-14 lg:grid-cols-12">
-          {SERVICES.map((service, i) => (
-            <ServiceCard key={service.number} service={service} index={i} />
-          ))}
-        </div>
+        {services.length === 0 ? (
+          <p className="text-sm text-charcoal-soft">
+            Οι υπηρεσίες μας ανανεώνονται σύντομα.
+          </p>
+        ) : (
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {services.map((service, i) => (
+              <ServiceCard key={service.id} service={service} index={i} />
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );
 }
 
 function ServiceCard({ service, index }: { service: Service; index: number }) {
-  const Icon = service.icon;
-
   return (
     <motion.article
       initial="hidden"
@@ -164,49 +86,40 @@ function ServiceCard({ service, index }: { service: Service; index: number }) {
       viewport={{ once: true, margin: "-80px" }}
       variants={fadeUp}
       transition={{ delay: index * 0.05 }}
-      className={`group ${service.span} ${service.offset}`}
+      whileHover={{ scale: 1.03, transition: { duration: 0.4, ease: EASE } }}
+      className="group flex h-full flex-col overflow-hidden rounded-2xl border border-charcoal/10 bg-white"
     >
-      {service.image ? (
-        <div className="relative overflow-hidden rounded-[2px]">
-          <Image
-            src={service.image}
-            alt={service.title}
-            sizes="(min-width: 1024px) 40vw, 100vw"
-            className="h-auto w-full transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-110"
-          />
-          <span className="absolute left-4 top-4 font-serif text-sm italic text-alabaster/90 drop-shadow-sm">
-            {service.number}
-          </span>
-        </div>
-      ) : (
-        <div
-          className={`relative aspect-[4/3] overflow-hidden rounded-[2px] bg-gradient-to-br ${service.tone}`}
-        >
-          <div className="absolute inset-0 flex items-center justify-center transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-110">
-            <Icon
-              strokeWidth={0.85}
-              className="h-16 w-16 text-charcoal/70 sm:h-20 sm:w-20"
-            />
-          </div>
-          <span className="absolute left-4 top-4 font-serif text-sm italic text-charcoal/50">
-            {service.number}
-          </span>
-        </div>
-      )}
-
-      <div className="mt-4 flex items-start justify-between gap-4">
-        <div>
-          <h3 className="font-serif text-xl tracking-tight sm:text-2xl">
-            {service.title}
-          </h3>
-          <p className="mt-2 text-sm leading-relaxed text-charcoal-soft">
-            {service.description}
-          </p>
-        </div>
-        <ArrowUpRight
-          strokeWidth={1.25}
-          className="mt-1.5 h-5 w-5 shrink-0 text-bronze transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1 group-hover:-translate-y-1"
+      <div className="overflow-hidden">
+        <Image
+          src={service.image_url}
+          alt={service.title.trim()}
+          width={640}
+          height={800}
+          sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+          className="h-auto w-full"
         />
+      </div>
+
+      <div className="flex flex-1 flex-col p-6">
+        <h3 className="font-serif text-xl tracking-tight sm:text-2xl">
+          {service.title.trim()}
+        </h3>
+        <p className="mt-2 text-sm leading-relaxed text-charcoal-soft">
+          {service.description.trim()}
+        </p>
+
+        <div className="mt-auto flex items-center justify-between gap-4 border-t border-charcoal/10 pt-4">
+          <span className="text-sm font-medium text-bronze">
+            {service.price.trim()}
+          </span>
+          <a
+            href="#contact"
+            className="group/link inline-flex items-center gap-1.5 text-[11px] uppercase tracking-[0.2em] text-charcoal transition-colors hover:text-bronze"
+          >
+            Περισσότερα
+            <ArrowRight className="h-3.5 w-3.5 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/link:translate-x-1" />
+          </a>
+        </div>
       </div>
     </motion.article>
   );

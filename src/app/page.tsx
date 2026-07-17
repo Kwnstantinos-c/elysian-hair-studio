@@ -1,5 +1,5 @@
 import Hero from "@/components/Hero";
-import Services from "@/components/Services";
+import Services, { type Service } from "@/components/Services";
 import Reviews from "@/components/Reviews";
 import Footer from "@/components/Footer";
 import { createClient } from "@/utils/supabase/server";
@@ -33,13 +33,32 @@ async function getHeroImage(): Promise<{ imageUrl: string; imageAlt: string }> {
   };
 }
 
+async function getServices(): Promise<Service[]> {
+  const supabase = await createClient();
+
+  const { data, error } = await supabase
+    .from("services")
+    .select("id, title, description, price, image_url, display_order")
+    .order("display_order", { ascending: true })
+    .overrideTypes<Service[], { merge: false }>();
+
+  if (error || !data) {
+    return [];
+  }
+
+  return data;
+}
+
 export default async function Home() {
-  const { imageUrl, imageAlt } = await getHeroImage();
+  const [{ imageUrl, imageAlt }, services] = await Promise.all([
+    getHeroImage(),
+    getServices(),
+  ]);
 
   return (
     <main className="overflow-x-hidden">
       <Hero imageUrl={imageUrl} imageAlt={imageAlt} />
-      <Services />
+      <Services services={services} />
       <Reviews />
       <Footer />
     </main>
