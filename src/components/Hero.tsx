@@ -92,7 +92,7 @@ export default function Hero({ imageUrl, imageAlt }: HeroProps) {
           fill
           priority
           sizes="100vw"
-          className="object-cover"
+          className="object-cover object-[30%_22%]"
         />
       </motion.div>
 
@@ -112,9 +112,14 @@ export default function Hero({ imageUrl, imageAlt }: HeroProps) {
         transition={{ duration: 0.9, ease: EASE }}
         className="relative z-10 flex items-center justify-between px-6 pt-8 sm:px-10 lg:px-16"
       >
-        <span className="font-serif text-5xl italic leading-none tracking-wider text-alabaster">
-          Elysian
-        </span>
+        <div className="flex flex-col items-center">
+          <span className="bg-gradient-to-b from-[#e6bc8a] via-[#a97a44] to-[#5c3a1e] bg-clip-text font-serif text-4xl font-normal leading-none tracking-[0.1em] text-transparent [text-shadow:0_1px_0_rgba(255,255,255,0.3),0_2px_5px_rgba(0,0,0,0.5)] sm:text-5xl">
+            ELYSIAN
+          </span>
+          <span className="mt-2 text-[9px] uppercase tracking-[0.35em] text-champagne sm:text-[10px]">
+            Hair Lounge by Maria
+          </span>
+        </div>
         <nav className="hidden items-center gap-10 text-[11px] uppercase tracking-[0.25em] text-alabaster/70 sm:flex">
           <a href="#services" className="transition-colors hover:text-champagne">
             Υπηρεσίες
