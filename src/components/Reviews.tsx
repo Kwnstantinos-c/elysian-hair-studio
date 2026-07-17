@@ -36,6 +36,18 @@ const REVIEWS: Review[] = [
     quote:
       "Σε έναν πεντακάθαρο και καλαίσθητο χώρο με υποδέχτηκαν με χαμόγελο και πηγαία ευγένεια η Μαρία και η Χρύσα. Η εξυπηρέτηση ήταν άψογη και το αποτέλεσμα ακριβώς αυτό που ήθελα. Σας συγχαίρω. Συνεχίστε με την ίδια αγάπη!",
   },
+  {
+    name: "Δήμητρα Λ",
+    rating: 5,
+    quote:
+      "Εξαιρετική εμπειρία! Πολύ ευγενικό και φιλικό προσωπικό, άψογη εξυπηρέτηση και πραγματικά υπέροχο αποτέλεσμα. Ο χώρος είναι καθαρός και προσεγμένος, ενω οι κομμωτές είναι επαγγελματίες και δίνουν σημασία στη λεπτομέρεια. Το συνιστώ ανεπιφύλακτα!",
+  },
+  {
+    name: "Γιάννης Κωνσταντίνου",
+    rating: 5,
+    quote:
+      "Απίστευτος επαγγελματισμός και φιλική διάθεση. Ο χώρος είναι μοντέρνος και καθαρός, και το αποτέλεσμα ξεπέρασε τις προσδοκίες μου. Ανεπιφύλακτα το προτείνω!",
+  },
 ];
 
 const fadeUp: Variants = {
@@ -74,19 +86,11 @@ export default function Reviews() {
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-3 sm:gap-8">
-          {REVIEWS.slice(0, 3).map((review, index) => (
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8 lg:grid-cols-3">
+          {REVIEWS.map((review, index) => (
             <ReviewCard key={review.name} review={review} index={index} />
           ))}
         </div>
-
-        {REVIEWS.length > 3 && (
-          <div className="mt-6 grid grid-cols-1 gap-6 sm:mt-8 sm:max-w-md sm:gap-8 lg:mx-auto">
-            {REVIEWS.slice(3).map((review, index) => (
-              <ReviewCard key={review.name} review={review} index={index + 3} />
-            ))}
-          </div>
-        )}
       </div>
     </section>
   );
