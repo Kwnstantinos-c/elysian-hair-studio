@@ -115,6 +115,9 @@ export default function Hero() {
           <a href="#services" className="transition-colors hover:text-champagne">
             Υπηρεσίες
           </a>
+          <a href="#reviews" className="transition-colors hover:text-champagne">
+            Κριτικές
+          </a>
           <a href="#contact" className="transition-colors hover:text-champagne">
             Επικοινωνία
           </a>
@@ -141,12 +144,12 @@ export default function Hero() {
 
         <h1 className="font-serif text-[13vw] font-medium leading-[0.98] tracking-tight text-alabaster sm:text-[8.5vw] lg:text-[6.4vw]">
           <span className="sr-only">
-            Η κόμμωση ως προσωπική αισθητική δήλωση
+            Η ομορφιά που εκφράζει εσάς
           </span>
-          <TypewriterLine text="Η κόμμωση" delay={0.5} className="block" />
-          <TypewriterLine text="ως προσωπική" delay={0.86} className="block" />
+          <TypewriterLine text="Η ομορφιά" delay={0.5} className="block" />
+          <TypewriterLine text="που εκφράζει" delay={0.86} className="block" />
           <TypewriterLine
-            text="αισθητική δήλωση"
+            text="εσάς."
             delay={1.22}
             className="block italic text-champagne"
           />
@@ -159,9 +162,7 @@ export default function Hero() {
           variants={fadeUp}
           className="mt-8 max-w-md text-sm leading-relaxed tracking-wide text-alabaster/80 sm:text-base"
         >
-          Ένα boutique ατελιέ στην καρδιά της πόλης, όπου κάθε δημιουργία
-          σχεδιάζεται με ακρίβεια, υπομονή και βαθύ σεβασμό στη μοναδικότητά
-          σας.
+          Στο Elysian Hair Studio κάθε δημιουργία σχεδιάζεται με αισθητική, τεχνική και απόλυτη προσοχή στη λεπτομέρεια, ώστε να αναδεικνύει τη δική σας μοναδική προσωπικότητα. 
         </motion.p>
 
         <motion.div

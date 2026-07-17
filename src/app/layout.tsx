@@ -27,7 +27,7 @@ export default function RootLayout({
   return (
     <html
       lang="el"
-      className={`${playfair.variable} ${inter.variable} antialiased`}
+      className={`${playfair.variable} ${inter.variable} scroll-smooth antialiased`}
     >
       <body className="bg-[#f6f3ee] text-[#26231f]">{children}</body>
     </html>
