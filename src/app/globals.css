@@ -25,6 +25,107 @@
   scrollbar-color: var(--color-champagne) transparent;
 }
 
+@property --gold-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes gold-spin {
+  to {
+    --gold-angle: 360deg;
+  }
+}
+
+@keyframes gold-glint {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.gold-border-btn {
+  position: relative;
+  box-shadow: 0 0 22px -6px rgba(201, 168, 118, 0.45);
+}
+
+.gold-border-btn::before {
+  content: "";
+  position: absolute;
+  inset: -1.5px;
+  border-radius: inherit;
+  padding: 1.5px;
+  background:
+    repeating-linear-gradient(
+      115deg,
+      rgba(255, 255, 255, 0.4) 0 1px,
+      transparent 1px 3px
+    ),
+    conic-gradient(
+      from var(--gold-angle),
+      #6b4d1f,
+      #f9e4a8,
+      #c9a876,
+      #fff6d8,
+      #9c7a4a,
+      #f4d78a,
+      #6b4d1f
+    );
+  background-blend-mode: overlay;
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  filter: drop-shadow(0 0 3px rgba(249, 228, 168, 0.55));
+  animation: gold-spin 5s linear infinite;
+  pointer-events: none;
+}
+
+.gold-border-btn::after {
+  content: "";
+  position: absolute;
+  inset: -1.5px;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: conic-gradient(
+    from var(--gold-angle),
+    transparent 0deg,
+    rgba(255, 255, 255, 0.95) 6deg,
+    transparent 14deg,
+    transparent 180deg,
+    rgba(255, 255, 255, 0.75) 188deg,
+    transparent 198deg,
+    transparent 360deg
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  mix-blend-mode: screen;
+  animation: gold-spin 5s linear infinite;
+  pointer-events: none;
+}
+
+.gold-glint {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 9999px;
+  background: radial-gradient(circle, #fff8e1 0%, #f6d98a 45%, transparent 80%);
+  box-shadow:
+    0 0 4px 1px rgba(249, 228, 168, 0.9),
+    0 0 8px 2px rgba(201, 168, 118, 0.5);
+  animation: gold-glint 2.8s ease-in-out infinite;
+  pointer-events: none;
+}
+
 body {
   font-family: var(--font-sans);
 }

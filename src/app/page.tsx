@@ -24,6 +24,7 @@ async function getHeroImage(): Promise<{ imageUrl: string; imageAlt: string }> {
     .maybeSingle<HeroImageRow>();
 
   if (error || !data) {
+    console.error("getHeroImage failed:", error);
     return { imageUrl: FALLBACK_HERO_IMAGE, imageAlt: FALLBACK_HERO_ALT };
   }
 
@@ -43,6 +44,7 @@ async function getServices(): Promise<Service[]> {
     .overrideTypes<Service[], { merge: false }>();
 
   if (error || !data) {
+    console.error("getServices failed:", error);
     return [];
   }
 

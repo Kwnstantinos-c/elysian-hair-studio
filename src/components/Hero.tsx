@@ -181,16 +181,24 @@ export default function Hero({ imageUrl, imageAlt }: HeroProps) {
           variants={fadeUp}
           className="mt-12 flex items-center gap-8"
         >
-          <a
-            href="#contact"
-            className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full border border-alabaster/30 px-8 py-4 text-[11px] uppercase tracking-[0.25em] text-alabaster"
-          >
-            <span className="absolute inset-0 -translate-x-full bg-alabaster transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-0" />
-            <span className="relative z-10 transition-colors duration-500 group-hover:text-charcoal">
-              Κλείστε Ραντεβού
-            </span>
-            <ArrowRight className="relative z-10 h-3.5 w-3.5 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1 group-hover:text-charcoal" />
-          </a>
+          <div className="gold-border-btn relative inline-flex rounded-full">
+            <a
+              href="#contact"
+              className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full px-8 py-4 text-[11px] uppercase tracking-[0.25em] text-alabaster"
+            >
+              <span className="absolute inset-0 -translate-x-full bg-alabaster transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-0" />
+              <span className="relative z-10 transition-colors duration-500 group-hover:text-charcoal">
+                Κλείστε Ραντεβού
+              </span>
+              <ArrowRight className="relative z-10 h-3.5 w-3.5 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1 group-hover:text-charcoal" />
+            </a>
+            <span className="gold-glint" style={{ top: "-6%", left: "10%", animationDelay: "0s" }} />
+            <span className="gold-glint" style={{ top: "50%", left: "-3%", animationDelay: "0.7s" }} />
+            <span className="gold-glint" style={{ top: "-6%", left: "62%", animationDelay: "1.3s" }} />
+            <span className="gold-glint" style={{ top: "104%", left: "35%", animationDelay: "1.9s" }} />
+            <span className="gold-glint" style={{ top: "50%", left: "101%", animationDelay: "2.5s" }} />
+            <span className="gold-glint" style={{ top: "104%", left: "82%", animationDelay: "3.1s" }} />
+          </div>
         </motion.div>
       </motion.div>
 
