@@ -2,11 +2,43 @@ import Hero from "@/components/Hero";
 import Services from "@/components/Services";
 import Reviews from "@/components/Reviews";
 import Footer from "@/components/Footer";
+import { createClient } from "@/utils/supabase/server";
 
-export default function Home() {
+const FALLBACK_HERO_IMAGE = "/images/Sallon1.png";
+const FALLBACK_HERO_ALT = "Ο χώρος υποδοχής του Elysian Hair Studio";
+
+type HeroImageRow = {
+  image_url: string;
+  alt_text: string | null;
+};
+
+async function getHeroImage(): Promise<{ imageUrl: string; imageAlt: string }> {
+  const supabase = await createClient();
+
+  const { data, error } = await supabase
+    .from("site_images")
+    .select("image_url, alt_text")
+    .ilike("section", "hero")
+    .order("display_order", { ascending: true })
+    .limit(1)
+    .maybeSingle<HeroImageRow>();
+
+  if (error || !data) {
+    return { imageUrl: FALLBACK_HERO_IMAGE, imageAlt: FALLBACK_HERO_ALT };
+  }
+
+  return {
+    imageUrl: data.image_url,
+    imageAlt: data.alt_text ?? FALLBACK_HERO_ALT,
+  };
+}
+
+export default async function Home() {
+  const { imageUrl, imageAlt } = await getHeroImage();
+
   return (
     <main className="overflow-x-hidden">
-      <Hero />
+      <Hero imageUrl={imageUrl} imageAlt={imageAlt} />
       <Services />
       <Reviews />
       <Footer />

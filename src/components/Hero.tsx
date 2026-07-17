@@ -60,7 +60,12 @@ function TypewriterLine({
   );
 }
 
-export default function Hero() {
+type HeroProps = {
+  imageUrl: string;
+  imageAlt: string;
+};
+
+export default function Hero({ imageUrl, imageAlt }: HeroProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -83,8 +88,8 @@ export default function Hero() {
         className="absolute inset-0 -top-[8%] h-[116%] w-full"
       >
         <Image
-          src="/images/Sallon1.png"
-          alt="Ο χώρος υποδοχής του Elysian Hair Studio"
+          src={imageUrl}
+          alt={imageAlt}
           fill
           priority
           sizes="100vw"
