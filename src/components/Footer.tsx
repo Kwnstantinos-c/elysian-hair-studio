@@ -80,7 +80,7 @@ export default function Footer() {
             whileInView="visible"
             viewport={{ once: true, margin: "-80px" }}
             variants={fadeUp}
-            className="grid grid-cols-1 gap-x-10 gap-y-10 text-sm sm:grid-cols-2 sm:gap-y-12"
+            className="grid grid-cols-1 gap-x-10 gap-y-14 text-sm sm:grid-cols-2 sm:gap-y-12"
           >
             <div>
               <div className="mb-4 flex items-center gap-2 text-charcoal-soft">
