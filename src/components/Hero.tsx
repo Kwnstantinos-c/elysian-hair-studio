@@ -171,7 +171,7 @@ export default function Hero({ imageUrl, imageAlt }: HeroProps) {
           variants={fadeUp}
           className="mt-8 max-w-md text-sm leading-relaxed tracking-wide text-alabaster/80 sm:text-base"
         >
-          Στο Elysian Hair Studio κάθε δημιουργία σχεδιάζεται με αισθητική, τεχνική και απόλυτη προσοχή στη λεπτομέρεια, ώστε να αναδεικνύει τη δική σας μοναδική προσωπικότητα. 
+          Στο Elysian Hair Studio κάθε δημιουργία σχεδιάζεται με αισθητική, τεχνική και απόλυτη προσοχή στη λεπτομέρεια, ώστε να αναδεικνύει τη δική σας μοναδική προσωπικότητα.
         </motion.p>
 
         <motion.div
@@ -179,7 +179,7 @@ export default function Hero({ imageUrl, imageAlt }: HeroProps) {
           animate="visible"
           custom={2.25}
           variants={fadeUp}
-          className="mt-12 flex items-center gap-8"
+          className="mt-12 flex justify-center"
         >
           <div className="gold-border-btn relative inline-flex rounded-full">
             <a
