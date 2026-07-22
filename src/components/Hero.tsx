@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform, type Variants } from "framer-motion";
-import { ArrowRight, ArrowDown } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -200,23 +200,6 @@ export default function Hero({ imageUrl, imageAlt }: HeroProps) {
             <span className="gold-glint" style={{ top: "104%", left: "82%", animationDelay: "3.1s" }} />
           </div>
         </motion.div>
-      </motion.div>
-
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 2.5 }}
-        className="absolute bottom-10 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-3"
-      >
-        <span className="text-[10px] uppercase tracking-[0.3em] text-alabaster/70">
-          Κυλίστε
-        </span>
-        <motion.span
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
-        >
-          <ArrowDown className="h-4 w-4 text-champagne" />
-        </motion.span>
       </motion.div>
     </section>
   );
