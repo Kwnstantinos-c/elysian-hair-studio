@@ -104,7 +104,8 @@ function ReviewCard({ review, index }: { review: Review; index: number }) {
       viewport={{ once: true, margin: "-80px" }}
       variants={fadeUp}
       transition={{ delay: index * 0.08 }}
-      className="flex flex-col justify-between rounded-sm border border-alabaster/10 bg-alabaster/[0.04] p-8 shadow-[0_8px_30px_rgba(0,0,0,0.25)]"
+      whileHover={{ scale: 1.05 }}
+      className="relative z-0 flex flex-col justify-between rounded-sm border border-alabaster/10 bg-alabaster/[0.04] p-8 shadow-[0_8px_30px_rgba(0,0,0,0.25)] transition-shadow duration-300 hover:z-10 hover:shadow-[0_20px_50px_rgba(0,0,0,0.4)]"
     >
       <div>
         <div className="mb-5 flex gap-1">
