@@ -1,7 +1,8 @@
 "use client";
 
+import { useState } from "react";
 import { motion, type Variants } from "framer-motion";
-import { Star } from "lucide-react";
+import { ChevronDown, Star } from "lucide-react";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -59,7 +60,12 @@ const fadeUp: Variants = {
   },
 };
 
+const MOBILE_PREVIEW_COUNT = 2;
+
 export default function Reviews() {
+  const [expanded, setExpanded] = useState(false);
+  const hasHiddenReviews = REVIEWS.length > MOBILE_PREVIEW_COUNT;
+
   return (
     <section
       id="reviews"
@@ -88,15 +94,45 @@ export default function Reviews() {
 
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8 lg:grid-cols-3">
           {REVIEWS.map((review, index) => (
-            <ReviewCard key={review.name} review={review} index={index} />
+            <ReviewCard
+              key={review.name}
+              review={review}
+              index={index}
+              hiddenOnMobile={!expanded && index >= MOBILE_PREVIEW_COUNT}
+            />
           ))}
         </div>
+
+        {hasHiddenReviews && (
+          <div className="mt-10 flex justify-center sm:hidden">
+            <button
+              type="button"
+              onClick={() => setExpanded((prev) => !prev)}
+              className="group flex items-center gap-2 text-[11px] uppercase tracking-[0.25em] text-champagne"
+            >
+              {expanded ? "Λιγότερες Κριτικές" : "Περισσότερες Κριτικές"}
+              <ChevronDown
+                className={`h-3.5 w-3.5 transition-transform duration-300 ${
+                  expanded ? "rotate-180" : ""
+                }`}
+              />
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );
 }
 
-function ReviewCard({ review, index }: { review: Review; index: number }) {
+function ReviewCard({
+  review,
+  index,
+  hiddenOnMobile,
+}: {
+  review: Review;
+  index: number;
+  hiddenOnMobile: boolean;
+}) {
   return (
     <motion.article
       initial="hidden"
@@ -105,7 +141,9 @@ function ReviewCard({ review, index }: { review: Review; index: number }) {
       variants={fadeUp}
       transition={{ delay: index * 0.08 }}
       whileHover={{ scale: 1.05 }}
-      className="relative z-0 flex flex-col justify-between rounded-sm border border-alabaster/10 bg-alabaster/[0.04] p-8 shadow-[0_8px_30px_rgba(0,0,0,0.25)] transition-shadow duration-300 hover:z-10 hover:shadow-[0_20px_50px_rgba(0,0,0,0.4)]"
+      className={`relative z-0 flex-col justify-between rounded-sm border border-alabaster/10 bg-alabaster/[0.04] p-8 shadow-[0_8px_30px_rgba(0,0,0,0.25)] transition-shadow duration-300 hover:z-10 hover:shadow-[0_20px_50px_rgba(0,0,0,0.4)] ${
+        hiddenOnMobile ? "hidden sm:flex" : "flex"
+      }`}
     >
       <div>
         <div className="mb-5 flex gap-1">
