@@ -66,13 +66,6 @@ export default function Footer() {
               Κλείστε το ραντεβού σας τηλεφωνικά ή περάστε από τον χώρο μας.
               Θα χαρούμε να συζητήσουμε το επόμενο look σας.
             </p>
-            <a
-              href="tel:+302521039452"
-              className="mt-8 inline-flex items-center gap-3 bg-charcoal px-8 py-4 text-[11px] uppercase tracking-[0.25em] text-alabaster transition-colors hover:bg-bronze"
-            >
-              <Phone className="h-4 w-4" strokeWidth={1.5} />
-              Κλείστε Ραντεβού
-            </a>
           </motion.div>
 
           <motion.div
@@ -102,7 +95,6 @@ export default function Footer() {
               <p className="leading-relaxed text-charcoal/80">
                 +30 2521 039452
                 <br />
-                hello@elysianhair.gr
               </p>
             </div>
 
