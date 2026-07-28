@@ -119,7 +119,6 @@ export default function Footer() {
               <p className="leading-relaxed text-charcoal/80">
                 +30 2521 039452
                 <br />
-                hello@elysianhair.gr
               </p>
             </div>
 
