@@ -1,7 +1,8 @@
 "use client";
 
+import { useState } from "react";
 import { motion, type Variants } from "framer-motion";
-import { Star } from "lucide-react";
+import { ChevronDown, Star } from "lucide-react";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -13,22 +14,22 @@ type Review = {
 
 const REVIEWS: Review[] = [
   {
-    name: "Despoina Kagioglou",
+    name: "Κρίστι Ζσκούρο",
    rating: 5,
     quote:
-      "Η Μαρία και η κυρία Χρύσα είναι απίστευτα ευγενικές και σε κάνουν να νιώθεις άνετα από την πρώτη στιγμή. Ο χώρος είναι πανέμορφος και πεντακάθαρος. Φαίνεται ότι αγαπούν αυτό που κάνουν και είναι εξαιρετικές στην δουλειά τους!",
-  },
-  {
-    name: "Eirini Potouri",
-    rating: 5,
-    quote:
-      "Το καλύτερο κομμωτήριο στην Δράμα! Ο χώρος πανέμορφος και η Μαρία είναι υπέροχη και γνωρίζει άψογα το επάγγελμα!",
-  },
-  {
-    name: "Κρίστι Ζσκούρο",
-    rating: 5,
-    quote:
       "Ένας από τους πιο όμορφους και προσεγμένους χώρους στην πόλη, με υπέροχη μινιμαλιστική αισθητική. Από την πρώτη στιγμή νιώθεις άνετα και ευπρόσδεκτη. Οι υπέροχες 2 γυναίκες που θα αντικρίσεις στον χώρο ξεχωρίζουν για την προσοχή στη λεπτομέρεια, τον επαγγελματισμό και την αληθινή φροντίδα σε κάθε στάδιο και εννοείται το χαμόγελο τους ❤️. Το αποτέλεσμα είναι πάντα άψογο και προσεγμένο.",
+  },
+  {
+    name: "Κωνσταντίνα Παπαδοπούλου",
+    rating: 5,
+    quote:
+      "Υπέροχος χώρος, ευχάριστο κλίμα και άψογη εξυπηρέτηση! Η Μαρία και η Ράνια είναι εξαιρετικές επαγγελματίες, με χαμόγελο, ευγένεια και πραγματική αγάπη για αυτό που κάνουν. Με έκαναν να νιώσω άνετα από την πρώτη στιγμή, άκουσαν ακριβώς τι ήθελα και το αποτέλεσμα με ενθουσίασε. Ήταν μια πραγματικά όμορφη εμπειρία και χωρίς αμφιβολία θα τις επιλέξω ξανά για την περιποίηση των μαλλιών μου. Τις προτείνω ανεπιφύλακτα!!!",
+  },
+  {
+    name: "Despoina Kagioglou",
+    rating: 5,
+    quote:
+      "Η Μαρία και η κυρία Χρύσα είναι απίστευτα ευγενικές και σε κάνουν να νιώθεις άνετα από την πρώτη στιγμή. Ο χώρος είναι πανέμορφος και πεντακάθαρος. Φαίνεται ότι αγαπούν αυτό που κάνουν και είναι εξαιρετικές στην δουλειά τους!",
   },
   {
     name: "Maria Vasileiadou",
@@ -42,6 +43,7 @@ const REVIEWS: Review[] = [
     quote:
       "Εξαιρετική εμπειρία! Πολύ ευγενικό και φιλικό προσωπικό, άψογη εξυπηρέτηση και πραγματικά υπέροχο αποτέλεσμα. Ο χώρος είναι καθαρός και προσεγμένος, ενω οι κομμωτές είναι επαγγελματίες και δίνουν σημασία στη λεπτομέρεια. Το συνιστώ ανεπιφύλακτα!",
   },
+
   {
     name: "Γιάννης Κωνσταντίνου",
     rating: 5,
@@ -59,7 +61,12 @@ const fadeUp: Variants = {
   },
 };
 
+const MOBILE_PREVIEW_COUNT = 2;
+
 export default function Reviews() {
+  const [expanded, setExpanded] = useState(false);
+  const hasHiddenReviews = REVIEWS.length > MOBILE_PREVIEW_COUNT;
+
   return (
     <section
       id="reviews"
@@ -88,15 +95,45 @@ export default function Reviews() {
 
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8 lg:grid-cols-3">
           {REVIEWS.map((review, index) => (
-            <ReviewCard key={review.name} review={review} index={index} />
+            <ReviewCard
+              key={review.name}
+              review={review}
+              index={index}
+              hiddenOnMobile={!expanded && index >= MOBILE_PREVIEW_COUNT}
+            />
           ))}
         </div>
+
+        {hasHiddenReviews && (
+          <div className="mt-10 flex justify-center sm:hidden">
+            <button
+              type="button"
+              onClick={() => setExpanded((prev) => !prev)}
+              className="group flex items-center gap-2 text-[11px] uppercase tracking-[0.25em] text-champagne"
+            >
+              {expanded ? "Λιγότερες Κριτικές" : "Περισσότερες Κριτικές"}
+              <ChevronDown
+                className={`h-3.5 w-3.5 transition-transform duration-300 ${
+                  expanded ? "rotate-180" : ""
+                }`}
+              />
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );
 }
 
-function ReviewCard({ review, index }: { review: Review; index: number }) {
+function ReviewCard({
+  review,
+  index,
+  hiddenOnMobile,
+}: {
+  review: Review;
+  index: number;
+  hiddenOnMobile: boolean;
+}) {
   return (
     <motion.article
       initial="hidden"
@@ -105,7 +142,9 @@ function ReviewCard({ review, index }: { review: Review; index: number }) {
       variants={fadeUp}
       transition={{ delay: index * 0.08 }}
       whileHover={{ scale: 1.05 }}
-      className="relative z-0 flex flex-col justify-between rounded-sm border border-alabaster/10 bg-alabaster/[0.04] p-8 shadow-[0_8px_30px_rgba(0,0,0,0.25)] transition-shadow duration-300 hover:z-10 hover:shadow-[0_20px_50px_rgba(0,0,0,0.4)]"
+      className={`relative z-0 flex-col justify-between rounded-sm border border-alabaster/10 bg-alabaster/[0.04] p-8 shadow-[0_8px_30px_rgba(0,0,0,0.25)] transition-shadow duration-300 hover:z-10 hover:shadow-[0_20px_50px_rgba(0,0,0,0.4)] ${
+        hiddenOnMobile ? "hidden sm:flex" : "flex"
+      }`}
     >
       <div>
         <div className="mb-5 flex gap-1">
