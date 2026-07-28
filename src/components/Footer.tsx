@@ -1,9 +1,13 @@
 "use client";
 
 import { motion, type Variants } from "framer-motion";
-import { MapPin, Phone, Clock, Mail } from "lucide-react";
+import { MapPin, Phone, Clock, Mail, Navigation } from "lucide-react";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
+
+const MAPS_QUERY = "Elysian Hair Lounge by Maria, Οδός Σμύρνης 6, Δράμα 661 00";
+const MAPS_EMBED_URL = `https://www.google.com/maps?q=${encodeURIComponent(MAPS_QUERY)}&output=embed`;
+const MAPS_LINK_URL = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(MAPS_QUERY)}`;
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 32 },
@@ -66,6 +70,15 @@ export default function Footer() {
               Κλείστε το ραντεβού σας τηλεφωνικά ή περάστε από τον χώρο μας.
               Θα χαρούμε να συζητήσουμε το επόμενο look σας.
             </p>
+            <div className="mt-8 overflow-hidden rounded-2xl border border-charcoal/10">
+              <iframe
+                src={MAPS_EMBED_URL}
+                title="Elysian Hair Lounge by Maria στον χάρτη"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="h-64 w-full grayscale-[15%] sm:h-72"
+              />
+            </div>
           </motion.div>
 
           <motion.div
@@ -76,9 +89,20 @@ export default function Footer() {
             className="grid grid-cols-1 gap-x-10 gap-y-14 text-sm sm:grid-cols-2 sm:gap-y-12"
           >
             <div>
-              <div className="mb-4 flex items-center gap-2 text-charcoal-soft">
-                <MapPin className="h-4 w-4" strokeWidth={1.25} />
-                <span className="text-[11px] uppercase tracking-[0.3em]">Διεύθυνση</span>
+              <div className="mb-4 flex items-center justify-between gap-2">
+                <div className="flex items-center gap-2 text-charcoal-soft">
+                  <MapPin className="h-4 w-4" strokeWidth={1.25} />
+                  <span className="text-[11px] uppercase tracking-[0.3em]">Διεύθυνση</span>
+                </div>
+                <a
+                  href={MAPS_LINK_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Άνοιγμα στο Google Maps"
+                  className="flex h-7 w-7 items-center justify-center rounded-full border border-charcoal/20 text-charcoal/60 transition-colors hover:border-bronze hover:text-bronze"
+                >
+                  <Navigation className="h-3.5 w-3.5" strokeWidth={1.5} />
+                </a>
               </div>
               <p className="leading-relaxed text-charcoal/80">
                 Οδός Σμύρνης 6
@@ -95,6 +119,7 @@ export default function Footer() {
               <p className="leading-relaxed text-charcoal/80">
                 +30 2521 039452
                 <br />
+                hello@elysianhair.gr
               </p>
             </div>
 
