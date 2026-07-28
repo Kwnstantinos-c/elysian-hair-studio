@@ -14,7 +14,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Elysian Hair Studio | Πολυτελής Κομμωτική",
+  title: "Elysian Hair Studio",
   description:
     "Elysian Hair Studio — Ένα boutique ατελιέ κομμωτικής όπου η τέχνη συναντά την ακρίβεια.",
 };
